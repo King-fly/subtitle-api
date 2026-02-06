@@ -1,0 +1,105 @@
+# Virtual environments
+.venv/
+venv/
+env/
+*.env
+!.env.example
+
+# Compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# OS files
+.DS_Store
+Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Log files
+logs/
+*.log
+.logs/
+
+# Database files
+*.db
+*.sqlite3
+*.sqlite
+
+# Redis files
+redis.conf
+*.rdb
+
+# Celery files
+celerybeat-schedule
+celerybeat.pid
+*.pid
+
+# PyTorch files
+*.pt
+*.pth
+
+# Whisper model files
+models/
+*.model
+*.pt
+
+# Test files
+.test_reports/
+coverage/
+*.coverage
+.coverage.*
+
+# Build files
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.tmp/
+
+# API documentation
+/docs/
+/_build/
+*.pdf
+*.html
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python distribution
+*.whl
+*.zip
+
+# Generated subtitles
+/subtitles/
+*.srt
+*.vtt
+*.txt
+
+# Audio/video files
+*.mp3
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv

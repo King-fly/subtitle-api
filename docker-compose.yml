@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+      - ./uploads:/app/uploads
+      - ./models:/app/models
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./subtitles.db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DEBUG=True
+    depends_on:
+      - redis
+
+  worker:
+    build: .
+    command: celery -A app.infrastructure.celery.celery_app worker --loglevel=info
+    volumes:
+      - .:/app
+      - ./uploads:/app/uploads
+      - ./models:/app/models
+    environment:
+      - DATABASE_URL=sqlite:///./subtitles.db
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - DEBUG=True
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
